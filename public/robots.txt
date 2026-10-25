@@ -1,0 +1,33 @@
+# Agrinas Pangan Nusantara — https://agrinashub.com
+# Halaman publik boleh diindeks. Area ber-login tidak.
+
+User-agent: *
+Allow: /
+Disallow: /masuk
+Disallow: /keluar
+Disallow: /profil
+Disallow: /workspace
+Disallow: /toko
+Disallow: /healthz
+
+# Mesin pencari berbasis AI — hanya halaman publik. Daftar eksplisit dipakai
+# karena sebagian perayap AI mengabaikan aturan "*".
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Bingbot
+Allow: /
+Disallow: /masuk
+Disallow: /keluar
+Disallow: /profil
+Disallow: /workspace
+Disallow: /toko
+Disallow: /healthz
+
+Sitemap: https://agrinashub.com/sitemap.xml
