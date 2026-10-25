@@ -8,7 +8,7 @@
 [![Laravel](https://img.shields.io/badge/Laravel-13-ff2d20?logo=laravel&logoColor=white)](https://laravel.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-3-003b57?logo=sqlite&logoColor=white)](https://sqlite.org/)
 [![Lisensi](https://img.shields.io/badge/lisensi-MIT-2ea44f)](LICENSE)
-[![Uji](https://github.com/USERNAME/agrinas-hub/actions/workflows/ci.yml/badge.svg)](https://github.com/USERNAME/agrinas-hub/actions/workflows/ci.yml)
+[![Uji](https://github.com/vannudin/agrinas-hub/actions/workflows/ci.yml/badge.svg)](https://github.com/vannudin/agrinas-hub/actions/workflows/ci.yml)
 
 </div>
 
@@ -145,6 +145,10 @@ tests/                      uji PHPUnit
 `mbstring`, `openssl`, `dom`, `fileinfo`, `zip`, serta Composer 2.
 
 ```bash
+# 0. Ambil kode
+git clone https://github.com/vannudin/agrinas-hub.git
+cd agrinas-hub
+
 # 1. Pasang dependensi
 composer install
 
