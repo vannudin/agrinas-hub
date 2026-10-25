@@ -1,0 +1,46 @@
+*.log
+.DS_Store
+Thumbs.db
+
+# Lingkungan & rahasia — JANGAN pernah diomit
+.env
+.env.*
+!.env.example
+/auth.json
+*.pem
+*.key
+/storage/*.key
+
+# Basis data (data kerja & demo yang dihasilkan)
+/database/demo/*.sqlite
+/database/demo/*.sqlite-shm
+/database/demo/*.sqlite-wal
+/database/*.sqlite
+*.sqlite-journal
+
+# Dependensi & hasil build
+/vendor
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/public/fonts-manifest.dev.json
+_ide_helper.php
+
+# Cache framework & sesi (isi tiap direktori diabaikan oleh .gitignore di dalamnya)
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
+/storage/pail
+
+# Perkakas editor & uji
+.phpunit.result.cache
+.phpactor.json
+/.phpunit.cache
+/.idea
+/.vscode
+/.nova
+/.zed
+/.cursor/
+/.codex
+Homestead.json
+Homestead.yaml
