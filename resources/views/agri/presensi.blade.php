@@ -349,7 +349,7 @@
 
         {{-- Login SIMKOPDES WAJIB menyertakan `recaptcha_token` (v3) atau
              `recaptcha_v2_token` — lihat masuk-*.js (`executeRecaptcha("login")`).
-             Kunci reCAPTCHA terikat domain simkopdes.go.id, jadi login tidak bisa
+             Kunci reCAPTCHA terikat domain SIMKOPDES, jadi login tidak bisa
              dijalankan dari server maupun dari halaman Hub. Satu-satunya jalan
              otomatis: pengguna sudah masuk di tab SIMKOPDES sendiri, lalu satu
              klik tautan simpan (bookmarklet) mengirim token ke halaman ini. --}}

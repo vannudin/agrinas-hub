@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Materi pelatihan yang ditarik dari LMS APN (https://lms.agrinaspangan.id).
+ * Materi pelatihan yang ditarik dari LMS APN (https://LMS).
  *
  * Disimpan salinan lokal supaya materi bisa dibaca dari Agrinas Hub walau LMS
  * sedang tidak bisa dihubungi, dan supaya admin bisa mengelola (CRUD) tanpa

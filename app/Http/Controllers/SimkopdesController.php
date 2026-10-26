@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 /**
- * Tarik data koperasi binaan dari api.simkopdes.go.id ke hub.
+ * Tarik data koperasi binaan dari API SIMKOPDES ke hub.
  *
  * Penarikannya MANUAL (tombol "Tarik data"), bukan latar belakang: satu akun
  * pendamping hanya membina 1-3 koperasi, jadi sinkronisasi terjadwal belum

@@ -5,7 +5,7 @@
 <header class="kepala">
   <div>
     <h1>Integrasi SIMKOPDES</h1>
-    <p class="tenang">Koperasi binaan akun pendamping ini, ditarik dari api.simkopdes.go.id.</p>
+    <p class="tenang">Koperasi binaan akun pendamping ini, ditarik dari API SIMKOPDES.</p>
   </div>
 </header>
 

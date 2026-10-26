@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 /**
- * Klien tipis untuk api.simkopdes.go.id — akun pendamping KDKMP.
+ * Klien tipis untuk API SIMKOPDES — akun pendamping KDKMP.
  *
  * Alur yang dipakai (semua sudah diverifikasi 2026-10-03 dengan akun nyata):
  *   login → JWT (~1 hari)  →  regional-facilitators/detail/{id}  →  period id
@@ -23,10 +23,6 @@ use Illuminate\Support\Facades\Http;
  */
 class Simkopdes
 {
-    /** Kunci/IV protokol payload SIMKOPDES (AES-256-CBC, dari bundle frontend). */
-    private const PROTO_KEY = 'KUNCI_DIHAPUS';
-    private const PROTO_IV = 'IV_DIHAPUS';
-
     /**
      * Jeda setelah SIMKOPDES menolak /auth/login dengan 403.
      *
@@ -367,7 +363,7 @@ class Simkopdes
 
     private function kirim(string $metode, string $path, ?string $token, array $isi = [], ?string $dasar = null)
     {
-        // connectTimeout longgar: api.simkopdes.go.id kadang lambat menjawab
+        // connectTimeout longgar: API SIMKOPDES kadang lambat menjawab
         // (terukur 3,9 dtk untuk GET, 2,6 dtk untuk login, sementara batas
         // *connect* bawaan klien hanya 10 dtk) -> sesekali "cURL error 28".
         //
@@ -424,9 +420,13 @@ class Simkopdes
             return $data;
         }
 
-        $kunci = hash('sha256', self::PROTO_KEY, true);
-        $teks = openssl_decrypt(base64_decode($data), 'aes-256-cbc', $kunci,
-            OPENSSL_RAW_DATA, self::PROTO_IV);
+        $kunci = (string) config('services.simkopdes.proto_key');
+        if ($kunci === '') {
+            throw new \RuntimeException('SIMKOPDES_PROTO_KEY belum diisi.');
+        }
+
+        $teks = openssl_decrypt(base64_decode($data), 'aes-256-cbc', hash('sha256', $kunci, true),
+            OPENSSL_RAW_DATA, (string) config('services.simkopdes.proto_iv'));
 
         if ($teks === false) {
             throw new \RuntimeException('Payload SIMKOPDES gagal didekripsi.');

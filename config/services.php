@@ -46,29 +46,33 @@ return [
     ],
 
     /*
-    | ONLYOFFICE Docs (document server) — kontainer di port 80 host, dipublikasikan
-    | sebagai office.advi.dev. `url` dipakai editor di sisi peramban DAN oleh server
+    | ONLYOFFICE Docs (document server) — kontainer di port 80 host. `url` dipakai
+    | editor di sisi peramban DAN oleh server
     | ONLYOFFICE untuk mengambil berkas; `secret` harus sama dengan JWT_SECRET
     | kontainer, kalau tidak setiap config editor ditolak dengan error -4.
     */
     'onlyoffice' => [
-        'url' => env('ONLYOFFICE_URL', 'https://office.advi.dev'),
+        'url' => env('ONLYOFFICE_URL', 'https://onlyoffice.contoh.invalid'),
         'secret' => env('ONLYOFFICE_JWT_SECRET', ''),
     ],
 
     'simkopdes' => [
         // Kunci bersama untuk helper di PC admin (lihat HelperTokenController).
         'helper_key' => env('SIMKOPDES_HELPER_KEY', ''),
-        // Akun pendamping KDKMP yang menarik data. Kunci enkripsi/IV payload
-        // TIDAK disimpan di sini — lihat App\Services\Simkopdes (protokol API).
-        'url' => env('SIMKOPDES_API_URL', 'https://api.simkopdes.go.id/api'),
+        // Akun pendamping KDKMP yang menarik data. Alamat di bawah hanya contoh:
+        // isi SIMKOPDES_API_URL di .env untuk memakai layanan sungguhan.
+        'url' => env('SIMKOPDES_API_URL', 'https://simkopdes.contoh.invalid/api'),
+        // Kunci/IV protokol payload (AES-256-CBC). WAJIB diisi sendiri di .env;
+        // tanpa ini dekripsi payload ditolak.
+        'proto_key' => env('SIMKOPDES_PROTO_KEY', ''),
+        'proto_iv' => env('SIMKOPDES_PROTO_IV', ''),
         'email' => env('SIMKOPDES_EMAIL'),
         'password' => env('SIMKOPDES_PASSWORD'),
         'facilitator_id' => env('SIMKOPDES_FACILITATOR_ID'),
         // Relay Cloudflare Worker — jalur UTAMA semua panggilan SIMKOPDES
         // (profil, absensi, unggah foto, login): keluar dengan IP Cloudflare
         // supaya IP server ini tidak tercatat di sana. Kosong = jalur langsung.
-        // Lihat /home/vannudin/simkopdes-relay/worker.js.
+        // Worker relay-nya tidak disertakan di repositori ini.
         'relay' => env('SIMKOPDES_RELAY_URL'),
         'relay_key' => env('SIMKOPDES_RELAY_KEY'),
     ],
@@ -78,7 +82,7 @@ return [
      * Kredensial disimpan di .env, bukan di kode.
      */
     'lms' => [
-        'url' => env('LMS_URL', 'https://lms.agrinaspangan.id'),
+        'url' => env('LMS_URL', 'https://lms.contoh.invalid'),
         'email' => env('LMS_EMAIL'),
         'sandi' => env('LMS_SANDI'),
     ],
@@ -101,7 +105,7 @@ return [
      * 403/404 — lihat App\Services\Agriconnect.
      */
     'agriconnect' => [
-        'master' => env('AC_MASTER', 'https://agriconnect-master.starconnect.id'),
+        'master' => env('AC_MASTER', 'https://agriconnect.contoh.invalid'),
         'username' => env('AC_USERNAME'),
         'password' => env('AC_PASSWORD'),
         'ua' => env('AC_UA', 'okhttp/4.12.0'),

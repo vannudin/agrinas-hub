@@ -53,10 +53,8 @@ use Illuminate\Support\Str;
 class SimkopdesAbsensi
 {
     /** Kunci/IV protokol payload SIMKOPDES (AES-256-CBC, dari bundle frontend). */
-    private const PROTO_KEY = 'KUNCI_DIHAPUS';
-    private const PROTO_IV = 'IV_DIHAPUS';
 
-    private const URL = 'https://api.simkopdes.go.id/api';
+    private const URL = 'https://simkopdes.contoh.invalid/api';
     private const DISK = 'r2';
 
     /**
@@ -217,7 +215,7 @@ class SimkopdesAbsensi
      *
      * Sejak 23-10-2026 `POST /api/login` menjawab 403 untuk semua akun (halaman
      * login SIMKOPDES memakai reCAPTCHA), jadi login otomatis dari server tidak
-     * mungkin lagi. Pengguna login sendiri di simkopdes.go.id — IP dan captcha
+     * mungkin lagi. Pengguna login sendiri di SIMKOPDES — IP dan captcha
      * miliknya — lalu menyerahkan token sesinya ke Hub. Token diuji dulu ke
      * `/profile`: yang tidak sah tidak menyimpan apa pun.
      *
@@ -1104,8 +1102,13 @@ class SimkopdesAbsensi
             return $data;
         }
 
+        $kunci = (string) config('services.simkopdes.proto_key');
+        if ($kunci === '') {
+            throw new \RuntimeException('SIMKOPDES_PROTO_KEY belum diisi.');
+        }
+
         $teks = openssl_decrypt(base64_decode($data), 'aes-256-cbc',
-            hash('sha256', self::PROTO_KEY, true), OPENSSL_RAW_DATA, self::PROTO_IV);
+            hash('sha256', $kunci, true), OPENSSL_RAW_DATA, (string) config('services.simkopdes.proto_iv'));
         if ($teks === false) {
             throw new \RuntimeException('Payload SIMKOPDES gagal didekripsi.');
         }

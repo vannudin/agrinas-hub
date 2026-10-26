@@ -25,10 +25,6 @@ class SimkopdesKontrak
 {
     public function __construct(private readonly SimkopdesAbsensi $absen) {}
 
-    /** Kunci/IV protokol payload SIMKOPDES (AES-256-CBC, dari bundle frontend). */
-    private const PROTO_KEY = 'KUNCI_DIHAPUS';
-    private const PROTO_IV = 'IV_DIHAPUS';
-
     /**
      * Tarik & simpan seluruh periode–penempatan–kontrak milik $u.
      *
@@ -316,7 +312,7 @@ class SimkopdesKontrak
     /** Dekripsi `data` AES-256-CBC — protokol SIMKOPDES yang sama dengan Simkopdes.php. */
     /**
      * Dekripsi `data` AES-256-CBC — protokol SIMKOPDES yang sama dengan
-     * Simkopdes.php (kunci & IV tetap dari bundle frontend, bukan Kredensial).
+     * Simkopdes.php (kunci & IV dari env).
      * Respons yang tidak terenkripsi diteruskan apa adanya.
      */
     private function buka(array $amplop): mixed
@@ -326,8 +322,13 @@ class SimkopdesKontrak
             return $amplop;
         }
 
+        $kunci = (string) config('services.simkopdes.proto_key');
+        if ($kunci === '') {
+            throw new \RuntimeException('SIMKOPDES_PROTO_KEY belum diisi.');
+        }
+
         $teks = openssl_decrypt(base64_decode($data), 'aes-256-cbc',
-            hash('sha256', self::PROTO_KEY, true), OPENSSL_RAW_DATA, self::PROTO_IV);
+            hash('sha256', $kunci, true), OPENSSL_RAW_DATA, (string) config('services.simkopdes.proto_iv'));
 
         if ($teks === false) {
             throw new \RuntimeException('Payload SIMKOPDES gagal didekripsi.');

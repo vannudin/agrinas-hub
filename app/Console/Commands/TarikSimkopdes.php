@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Tarik koperasi binaan dari api.simkopdes.go.id tanpa membuka peramban.
+ * Tarik koperasi binaan dari API SIMKOPDES tanpa membuka peramban.
  *
  *   php artisan simkopdes:tarik            # tarik + tulis
  *   php artisan simkopdes:tarik --kering   # tarik saja, tidak menulis apa pun

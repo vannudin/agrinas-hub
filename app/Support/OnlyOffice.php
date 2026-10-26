@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * Penyambung ONLYOFFICE Docs (kontainer di localhost:80, publik di
- * office.advi.dev). Tugasnya dua: menandatangani token JWT yang diminta editor
+ * OnlyOffice). Tugasnya dua: menandatangani token JWT yang diminta editor
  * dan menyusun config editor untuk satu dokumen.
  *
  * Tanda tangan dibuat sendiri (HS256) karena firebase/php-jwt tidak terpasang —

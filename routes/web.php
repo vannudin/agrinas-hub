@@ -270,7 +270,7 @@ Route::middleware(['auth', 'pantau'])->group(function () {
     Route::get('/workspace/gambar', [WorkspaceController::class, 'gambar'])->name('workspace.gambar');
     // Berkas editor PhotoCraft disalurkan HUB, bukan dibuka dari subdomainnya
     // sendiri. Dua sebab:
-    //  1. subdomain photocraft.advi.dev dulu bisa dimuat siapa saja yang tahu
+    //  1. subdomain dev dulu bisa dimuat siapa saja yang tahu
     //     alamatnya; lewat rute ini (di dalam grup `auth`) hanya pengguna yang
     //     sudah masuk yang bisa memuatnya;
     //  2. halaman dan editor jadi SATU asal, jadi cookie sesi Hub tidak perlu
@@ -515,7 +515,7 @@ Route::middleware(['auth', 'pantau'])->group(function () {
         Route::post('/admin/akun/{id}/aktif', [KomunikasiController::class, 'akun_aktif'])
             ->whereNumber('id')->name('admin.akun.aktif');
 
-        // Integrasi SIMKOPDES: tarik koperasi binaan dari api.simkopdes.go.id.
+        // Integrasi SIMKOPDES: tarik koperasi binaan dari API SIMKOPDES.
         Route::get('/admin/simkopdes', [SimkopdesController::class, 'halaman'])->name('admin.simkopdes');
         Route::post('/admin/simkopdes/tarik', [SimkopdesController::class, 'tarik'])->name('admin.simkopdes.tarik');
         // Tarik data lahan/pembangunan KDKMP (verval aset) dari SIMKOPDES.

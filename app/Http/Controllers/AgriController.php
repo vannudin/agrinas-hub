@@ -697,7 +697,7 @@ class AgriController extends Controller
      * Ringkasan sinkronisasi KDKMP untuk lencana di halaman Presensi: apakah
      * akun sudah terhubung, berapa baris daftar hadir, dan baris mana yang masih
      * menunggu dikirim. Sengaja TIDAK menyentuh jaringan — halaman presensi
-     * tidak boleh menggantung karena api.simkopdes.go.id sedang lambat.
+     * tidak boleh menggantung karena API SIMKOPDES sedang lambat.
      */
     private function kdkmpRingkas(SimkopdesAbsensi $svc, User $u): array
     {

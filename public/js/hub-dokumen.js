@@ -36,7 +36,7 @@
 
   if (typeof DocsAPI === 'undefined') {
     wadah.innerHTML = '<div class="pesan rusak" role="alert">Editor ONLYOFFICE gagal dimuat '
-      + '(api.js tidak tersedia). Periksa koneksi ke office.advi.dev.</div>';
+      + '(api.js tidak tersedia). Periksa koneksi ke OnlyOffice.</div>';
     return;
   }
 

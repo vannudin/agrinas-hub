@@ -554,7 +554,7 @@
 })();
 
 /* Sambung SIMKOPDES tanpa F12: markah (bookmarklet) di halaman Absen KDKMP
-   membawa token dari tab simkopdes.go.id ke sini lewat fragmen URL
+   membawa token dari tab SIMKOPDES ke sini lewat fragmen URL
    (`#simp=...`) — fragmen tidak pernah dikirim ke server, jadi token tidak
    masuk log akses. Begitu halaman siap: token diisikan ke form sambung, fragmen
    dibersihkan dari riwayat, lalu form dikirim sendiri.
